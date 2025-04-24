@@ -4,7 +4,7 @@
  * @param {Object} options plugin options, refer to https://fastify.dev/docs/latest/Reference/Plugins/#plugin-options
  */
 import { forecastBalance } from "../forecasting/forecastBalance.js";
-import { getAccount, getRegularPayments } from "../model/accounts.js";
+import { getAccount, getForecastSuggestions, getRegularPayments } from "../model/accounts.js";
 
 function routes (fastify, options) {
   fastify.get('/account/:accountId', async (request, reply) => {
@@ -33,14 +33,11 @@ function routes (fastify, options) {
   })
 
   fastify.get('/account/:accountId/forecast', async (request, reply) => {
+    const reductions = await getForecastSuggestions(fastify.dbClient, request.params.accountId);
     return {
-      reductions: [
-        {
-          name: 'Takeaways',
-          amount: '100.20',
-        }
-      ]
-    };
+      totalSavings: reductions.reduce((acc, reduction) => acc + reduction.savings_per_month, 0),
+      suggestions: reductions,
+    }
   });
 }
 

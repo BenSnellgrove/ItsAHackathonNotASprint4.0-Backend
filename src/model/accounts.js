@@ -40,4 +40,10 @@ const getRegularPayments = async (dbClient, accountId) => {
   return result.recordset;
 }
 
-export { getAccount, getRegularPayments };
+const getForecastSuggestions = async (dbClient, accountId) => {
+  const result = await dbClient.query(`SELECT * FROM forecast_suggestions WHERE account_id=${accountId}`);
+
+  return result.recordset;
+}
+
+export { getAccount, getRegularPayments, getForecastSuggestions };

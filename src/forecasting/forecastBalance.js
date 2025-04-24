@@ -9,7 +9,7 @@ const forecastBalance = (currentBalance, nextIncomingPaymentDate, regularPayment
   if (regularPayments.length === 0) {
     return currentBalance;
   }
-  
+
   // Subtract all outgoing payments between now and the next incoming payment
   const outgoingPayments = regularPayments
     .filter(payment => payment.next_due_date <= nextIncomingPaymentDate);
@@ -17,4 +17,4 @@ const forecastBalance = (currentBalance, nextIncomingPaymentDate, regularPayment
   return Math.round(currentBalance - outgoingTotal, 2);
 }
 
-export { forecastBalance}
+export { forecastBalance }
