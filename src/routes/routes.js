@@ -31,6 +31,17 @@ function routes (fastify, options) {
       reply.status(404).send({ error: 'Account not found' });
     }
   })
+
+  fastify.get('/account/:accountId/forecast', async (request, reply) => {
+    return {
+      reductions: [
+        {
+          name: 'Takeaways',
+          amount: '100.20',
+        }
+      ]
+    };
+  });
 }
 
 export default routes;
