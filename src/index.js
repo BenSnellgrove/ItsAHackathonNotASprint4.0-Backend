@@ -22,7 +22,7 @@ fastify.register(dbPlugin)
  */
 const start = async () => {
   try {
-    await fastify.listen({ port: process.env.PORT || 8000 })
+    await fastify.listen({ host: '0.0.0.0', port: process.env.PORT || 8000 })
   } catch (err) {
     fastify.log.error(err)
     process.exit(1)
