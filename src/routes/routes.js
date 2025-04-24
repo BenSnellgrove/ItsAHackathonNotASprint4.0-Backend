@@ -39,12 +39,6 @@ function routes (fastify, options) {
       suggestions: reductions,
     }
   });
-
-  fastify.get('/', async (request, reply) => {
-    return {
-      foo: 'bar',
-    }
-  });
 }
 
 export default routes;
