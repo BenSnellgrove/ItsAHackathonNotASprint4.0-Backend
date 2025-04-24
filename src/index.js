@@ -4,9 +4,14 @@ import routes from './routes/routes.js'
 import dbPlugin from './plugins/database.plugin.js'
 
 import 'dotenv/config'
+import fastifyCors from '@fastify/cors'
 
 const fastify = Fastify({
   logger: true
+})
+
+fastify.register(fastifyCors, {
+  origin: '*'
 })
 
 fastify.register(routes);
