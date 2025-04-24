@@ -69,6 +69,4 @@ jobs:
         uses: azure/webapps-deploy@v2
         with:
           app-name: 'whats-left-be'
-          slot-name: 'Production'
-
-          
+          slot-name: 'staging'
